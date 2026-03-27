@@ -60,6 +60,113 @@ a {
   min-height: 100vh;
 }
 
+html.dark-mode {
+  color-scheme: dark;
+}
+
+html.dark-mode body {
+  background:
+    radial-gradient(circle at top, rgba(16, 185, 129, 0.18), transparent 32%),
+    #07110d;
+}
+
+html.dark-mode body::before {
+  background-image:
+    linear-gradient(rgba(6, 20, 14, 0.62), rgba(6, 20, 14, 0.62)),
+    linear-gradient(rgba(134, 239, 172, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(134, 239, 172, 0.08) 1px, transparent 1px);
+}
+
+html.dark-mode .bg-stone-50 {
+  background-color: #07110d;
+}
+
+html.dark-mode .bg-white {
+  background-color: #10201a;
+}
+
+html.dark-mode .bg-white\/90 {
+  background-color: rgba(16, 32, 26, 0.9);
+}
+
+html.dark-mode .bg-white\/80 {
+  background-color: rgba(16, 32, 26, 0.82);
+}
+
+html.dark-mode .bg-white\/70 {
+  background-color: rgba(16, 32, 26, 0.72);
+}
+
+html.dark-mode .bg-emerald-50 {
+  background-color: rgba(6, 46, 30, 0.6);
+}
+
+html.dark-mode .text-stone-950 {
+  color: #f0fdf4;
+}
+
+html.dark-mode .text-stone-700,
+html.dark-mode .text-stone-600 {
+  color: #bbf7d0;
+}
+
+html.dark-mode .text-stone-500 {
+  color: #86efac;
+}
+
+html.dark-mode .text-emerald-800,
+html.dark-mode .text-emerald-700 {
+  color: #6ee7b7;
+}
+
+html.dark-mode .border-stone-200,
+html.dark-mode .border-stone-200\/70,
+html.dark-mode .border-stone-200\/80,
+html.dark-mode .border-emerald-200,
+html.dark-mode .border-emerald-200\/70,
+html.dark-mode .border-emerald-200\/80 {
+  border-color: rgba(110, 231, 183, 0.35);
+}
+
+html.dark-mode .border-stone-300,
+html.dark-mode .border-emerald-300 {
+  border-color: rgba(110, 231, 183, 0.52);
+}
+
+html.dark-mode .project-stage {
+  background: rgba(10, 24, 18, 0.82);
+}
+
+html.dark-mode .project-stage-item {
+  background: rgba(13, 35, 25, 0.85);
+}
+
+html.dark-mode .project-tilt-card {
+  background: rgba(14, 39, 28, 0.9);
+}
+
+html.dark-mode .project-outline-title {
+  -webkit-text-stroke: 1.8px #6ee7b7;
+  text-stroke: 1.8px #6ee7b7;
+}
+
+html.dark-mode .project-stage-item:hover .project-outline-title {
+  color: #6ee7b7;
+}
+
+html.dark-mode .stack-orbit-stage {
+  background:
+    radial-gradient(circle at center, rgba(6, 54, 36, 0.95), rgba(10, 30, 21, 0.92) 58%, rgba(9, 26, 19, 1) 100%);
+}
+
+html.dark-mode .stack-orbit-core {
+  background: rgba(12, 34, 24, 0.95);
+}
+
+html.dark-mode .stack-orbit-item {
+  background: rgba(12, 34, 24, 0.94);
+}
+
 .project-stage {
   perspective: 1600px;
   perspective-origin: 70% 40%;
