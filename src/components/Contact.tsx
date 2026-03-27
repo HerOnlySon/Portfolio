@@ -29,9 +29,9 @@ function Contact() {
               Let&apos;s work together.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
-              I&apos;m open to software engineering opportunities, beginner-friendly
-              web or Java collaborations, and conversations about frontend
-              fundamentals, Java learning, and responsive design.
+              I&apos;m open to software engineering opportunities, web and Java
+              collaborations, and conversations about frontend architecture,
+              Java development, and responsive design.
             </p>
           </Reveal>
 

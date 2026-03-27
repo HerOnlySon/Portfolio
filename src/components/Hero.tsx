@@ -112,7 +112,8 @@ function Hero() {
               Current Focus
             </p>
             <p className="mt-4 text-2xl font-medium leading-tight tracking-[-0.04em] text-stone-950">
-              Small web projects, practice apps, Java growth, and beginner-friendly collaboration.
+              Building production-ready web applications, strengthening Java
+              depth, and collaborating on meaningful software products.
             </p>
             <div className="mt-8 space-y-3 text-sm text-stone-600">
               <div className="flex items-center justify-between border-t border-emerald-200 pt-3">
@@ -121,7 +122,7 @@ function Hero() {
               </div>
               <div className="flex items-center justify-between border-t border-emerald-200 pt-3">
                 <span>Open to</span>
-                <span>Junior-friendly projects</span>
+                <span>Software engineering roles</span>
               </div>
               <div className="flex items-center justify-between border-t border-emerald-200 pt-3">
                 <span>Ask me about</span>
