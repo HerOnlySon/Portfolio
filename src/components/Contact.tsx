@@ -1,17 +1,5 @@
 import Reveal from './Reveal'
-
-const contactLinks = [
-  {
-    label: 'LinkedIn',
-    value: 'lebohang-michael-nkoniera',
-    href: 'https://www.linkedin.com/in/lebohang-michael-nkoniera-952454228/',
-  },
-  {
-    label: 'GitHub',
-    value: 'HerOnlySon',
-    href: 'https://github.com/HerOnlySon',
-  },
-]
+import { contactLinks } from '../data/portfolio'
 
 function Contact() {
   return (
@@ -42,12 +30,17 @@ function Contact() {
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-between rounded-2xl border border-emerald-200 px-5 py-4 transition-colors duration-300 hover:border-emerald-700 hover:bg-emerald-50"
+                  className="group flex items-center justify-between rounded-2xl border border-emerald-200 px-5 py-4 transition-all duration-500 hover:-translate-y-0.5 hover:border-emerald-700 hover:bg-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
                 >
-                  <span className="text-sm uppercase tracking-[0.24em] text-emerald-700">
-                    {link.label}
+                  <span>
+                    <span className="text-sm uppercase tracking-[0.24em] text-emerald-700">
+                      {link.label}
+                    </span>
+                    <span className="mt-2 block text-sm leading-6 text-stone-500">
+                      {link.copy}
+                    </span>
                   </span>
-                  <span className="text-sm font-medium text-stone-950 sm:text-base">
+                  <span className="text-right text-sm font-medium text-stone-950 transition-transform duration-500 group-hover:translate-x-1 sm:text-base">
                     {link.value}
                   </span>
                 </a>

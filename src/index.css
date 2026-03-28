@@ -18,10 +18,12 @@
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 8.5rem;
 }
 
 body {
@@ -31,6 +33,7 @@ body {
     radial-gradient(circle at top, rgba(16, 185, 129, 0.2), transparent 26%),
     var(--color-portfolio-bg);
   overflow-x: hidden;
+  transition: background-color 400ms ease, color 400ms ease;
 }
 
 body::before {
@@ -52,8 +55,17 @@ a {
   text-decoration: none;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: none;
 }
 
 #root {
@@ -167,6 +179,63 @@ html.dark-mode .stack-orbit-item {
   background: rgba(12, 34, 24, 0.94);
 }
 
+.site-nav-shell {
+  border-color: rgba(6, 95, 70, 0.24);
+  background:
+    linear-gradient(135deg, rgba(6, 78, 59, 0.96), rgba(17, 24, 39, 0.92));
+}
+
+.site-nav-mobile {
+  border-color: rgba(6, 95, 70, 0.22);
+  background:
+    linear-gradient(135deg, rgba(6, 78, 59, 0.9), rgba(17, 24, 39, 0.88));
+}
+
+.site-nav-shell .text-stone-950,
+.site-nav-shell .text-stone-600,
+.site-nav-mobile .text-stone-600 {
+  color: #f8fafc;
+}
+
+.site-nav-shell .bg-emerald-50 {
+  background-color: rgba(167, 243, 208, 0.14);
+}
+
+.site-nav-shell .border-emerald-200 {
+  border-color: rgba(167, 243, 208, 0.24);
+}
+
+.site-nav-shell .text-emerald-700,
+.site-nav-shell .text-emerald-800,
+.site-nav-mobile .text-emerald-700,
+.site-nav-mobile .text-emerald-800 {
+  color: #a7f3d0;
+}
+
+.site-nav-shell .border-emerald-300,
+.site-nav-mobile .border-emerald-300 {
+  border-color: rgba(167, 243, 208, 0.34);
+}
+
+.site-nav-shell a:hover,
+.site-nav-mobile a:hover,
+.site-nav-shell button:hover,
+.site-nav-mobile button:hover {
+  color: #ffffff;
+}
+
+html.dark-mode .site-nav-shell {
+  border-color: rgba(110, 231, 183, 0.24);
+  background:
+    linear-gradient(135deg, rgba(6, 54, 36, 0.96), rgba(3, 10, 19, 0.94));
+}
+
+html.dark-mode .site-nav-mobile {
+  border-color: rgba(110, 231, 183, 0.22);
+  background:
+    linear-gradient(135deg, rgba(6, 54, 36, 0.9), rgba(3, 10, 19, 0.9));
+}
+
 .project-stage {
   perspective: 1600px;
   perspective-origin: 70% 40%;
@@ -180,6 +249,10 @@ html.dark-mode .stack-orbit-item {
   transform-style: preserve-3d;
   transform-origin: right center;
   will-change: transform;
+  transition:
+    border-color 300ms ease,
+    background-color 300ms ease,
+    box-shadow 400ms ease;
 }
 
 .project-tilt-card {
@@ -193,6 +266,11 @@ html.dark-mode .stack-orbit-item {
 .project-stage-item:hover .project-tilt-card {
   transform: rotate3d(0, 1, 0, -5deg) translate3d(0, -6px, 0);
   box-shadow: 0 22px 70px rgba(6, 95, 70, 0.16);
+}
+
+.project-stage-item:hover {
+  border-color: rgba(5, 150, 105, 0.38);
+  box-shadow: 0 24px 70px rgba(16, 185, 129, 0.08);
 }
 
 .project-outline-title {
@@ -259,6 +337,7 @@ html.dark-mode .stack-orbit-item {
 }
 
 .stack-orbit-item {
+  --orbit-accent: #059669;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -266,12 +345,14 @@ html.dark-mode .stack-orbit-item {
   background: rgba(255, 255, 255, 0.95);
   color: #065f46;
   border-radius: 9999px;
-  width: 3.15rem;
-  height: 3.15rem;
-  display: grid;
-  place-items: center;
-  padding: 0;
+  min-width: 5.4rem;
+  height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.85rem;
   box-shadow: 0 12px 28px rgba(28, 25, 23, 0.08);
+  white-space: nowrap;
   transform-style: preserve-3d;
   transform:
     translate(-50%, -50%)
@@ -286,30 +367,21 @@ html.dark-mode .stack-orbit-item {
     background-color 250ms ease;
 }
 
-.stack-orbit-item-logo {
-  width: 1.4rem;
-  height: 1.4rem;
-  object-fit: contain;
-}
-
-.stack-orbit-item-fallback {
+.stack-orbit-item-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
   border-radius: 9999px;
-  background: rgba(16, 185, 129, 0.15);
-  color: #065f46;
-  font-size: 0.66rem;
+  color: var(--orbit-accent);
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .stack-orbit-item.is-active {
-  border-color: rgba(5, 150, 105, 0.55);
-  color: #064e3b;
+  border-color: color-mix(in srgb, var(--orbit-accent) 48%, white);
+  color: var(--orbit-accent);
   background: rgba(255, 255, 255, 1);
   transform:
     translate(-50%, -50%)
@@ -353,16 +425,18 @@ html.dark-mode .stack-orbit-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 9999px;
   background: rgba(16, 185, 129, 0.1);
 }
 
-.stack-orbit-core-icon {
-  width: 1.35rem;
-  height: 1.35rem;
-  object-fit: contain;
+.stack-orbit-core-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: currentColor;
+  box-shadow: 0 0 0 0.35rem color-mix(in srgb, currentColor 18%, transparent);
 }
 
 .stack-orbit-core-value {
@@ -411,13 +485,9 @@ html.dark-mode .stack-orbit-item {
   }
 
   .stack-orbit-item {
-    width: 2.85rem;
-    height: 2.85rem;
-  }
-
-  .stack-orbit-item-logo {
-    width: 1.2rem;
-    height: 1.2rem;
+    min-width: 4.6rem;
+    height: 2.5rem;
+    padding: 0 0.65rem;
   }
 
   .stack-orbit-core {
@@ -429,6 +499,10 @@ html.dark-mode .stack-orbit-item {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  body {
+    transition: none;
   }
 
   .stack-orbit-auto {

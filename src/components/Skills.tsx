@@ -1,44 +1,5 @@
 import Reveal from './Reveal'
-
-const skillGroups = [
-  {
-    category: 'Frontend',
-    items: [
-      'HTML5',
-      'CSS',
-      'JavaScript',
-      'TypeScript',
-      'React',
-      'Angular',
-      'Bootstrap',
-      'SASS',
-      'Redux',
-    ],
-  },
-  {
-    category: 'Backend',
-    items: ['Java', 'Spring Boot', 'Python', 'Django', 'Kotlin'],
-  },
-  {
-    category: 'Database',
-    items: ['Postgres', 'MySQL', 'MongoDB', 'Firebase'],
-  },
-  {
-    category: 'Tools',
-    items: [
-      'Git',
-      'GitHub',
-      'NPM',
-      'Jest',
-      'Jira',
-      'Trello',
-      'Power BI',
-      'Figma',
-      'Canva',
-      'Kubernetes',
-    ],
-  },
-]
+import { skillGroups } from '../data/portfolio'
 
 function Skills() {
   return (

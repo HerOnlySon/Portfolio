@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import type { MouseEvent } from 'react'
+import { smoothEase } from '../lib/motion'
 import Reveal from './Reveal'
 import TechStackOrbit from './TechStackOrbit'
 
@@ -7,24 +8,23 @@ type Project = {
   name: string
   label: string
   description: string
-  techStack: string[]
+  techStack: readonly string[]
   githubUrl: string
   liveUrl: string
 }
 
 type ProjectsProps = {
-  projects: Project[]
+  projects: readonly Project[]
 }
 
 function Projects({ projects }: ProjectsProps) {
+  const prefersReducedMotion = useReducedMotion()
+
   const openProjectRepo = (url: string) => {
-    window.location.assign(url)
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 
-  const handleCardClick = (
-    event: MouseEvent<HTMLElement>,
-    url: string,
-  ) => {
+  const handleCardClick = (event: MouseEvent<HTMLElement>, url: string) => {
     const target = event.target as HTMLElement
     if (target.closest('a, button')) {
       return
@@ -41,13 +41,13 @@ function Projects({ projects }: ProjectsProps) {
             Projects
           </p>
           <h2 className="mt-4 text-3xl font-medium tracking-[-0.05em] text-stone-950 sm:text-4xl">
-            A bolder project stage inspired by editorial portfolios and
-            perspective-driven work indexes.
+            Product-minded builds presented with stronger depth, clearer calls
+            to action, and smoother motion.
           </h2>
           <p className="mt-5 text-base leading-8 text-stone-600 sm:text-lg">
-            The idea here is to make the work feel memorable at first glance:
-            oversized naming, strong hierarchy, and subtle depth instead of a
-            generic card grid.
+            Each project card now behaves like a polished work sample: easier to
+            scan, easier to click, and refined enough to hold up in front of
+            recruiters or clients.
           </p>
         </Reveal>
 
@@ -56,7 +56,7 @@ function Projects({ projects }: ProjectsProps) {
             {projects.map((project, index) => (
               <motion.article
                 key={project.name}
-                className="group project-stage-item relative overflow-hidden rounded-[2rem] border border-emerald-200 bg-emerald-50/70 p-5 sm:p-6 lg:p-8"
+                className="group project-stage-item relative overflow-hidden rounded-[2rem] border border-emerald-200 bg-emerald-50/70 p-5 focus-within:border-emerald-500 focus-within:shadow-[0_18px_50px_rgba(4,120,87,0.12)] sm:p-6 lg:p-8"
                 role="link"
                 tabIndex={0}
                 onClick={(event) => handleCardClick(event, project.githubUrl)}
@@ -66,20 +66,24 @@ function Projects({ projects }: ProjectsProps) {
                     openProjectRepo(project.githubUrl)
                   }
                 }}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 32 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.08,
-                  ease: [0.22, 1, 0.36, 1],
+                  duration: prefersReducedMotion ? 0 : 0.7,
+                  delay: prefersReducedMotion ? 0 : index * 0.08,
+                  ease: smoothEase,
                 }}
-                whileHover={{
-                  rotateY: -10,
-                  rotateX: 2,
-                  x: 6,
-                  y: -6,
-                }}
+                whileHover={
+                  prefersReducedMotion
+                    ? undefined
+                    : {
+                        rotateY: -8,
+                        rotateX: 2,
+                        x: 4,
+                        y: -4,
+                      }
+                }
               >
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_top_right,rgba(24,24,27,0.08),transparent_60%)]" />
 
@@ -93,7 +97,7 @@ function Projects({ projects }: ProjectsProps) {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="project-outline-title block text-5xl font-extrabold uppercase leading-[0.88] tracking-[-0.05em] text-stone-950 sm:text-6xl lg:text-[5.8rem]"
+                      className="project-outline-title block text-5xl font-extrabold uppercase leading-[0.88] tracking-[-0.05em] text-stone-950 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-4 sm:text-6xl lg:text-[5.8rem]"
                     >
                       {project.name}
                     </a>
@@ -113,25 +117,25 @@ function Projects({ projects }: ProjectsProps) {
                       </span>
                     </div>
 
-                    <TechStackOrbit items={project.techStack} />
+                    <TechStackOrbit items={[...project.techStack]} />
 
                     <div className="mt-6 border-t border-emerald-200 pt-5">
-                      <div className="flex gap-3">
+                      <div className="flex flex-wrap gap-3">
                         <a
                           href={project.githubUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center rounded-full border border-emerald-300 px-4 py-2 text-sm text-emerald-800 transition-colors duration-300 hover:border-emerald-700 hover:bg-emerald-700 hover:text-white"
+                          className="inline-flex items-center rounded-full border border-emerald-300 px-4 py-2 text-sm text-emerald-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700 hover:bg-emerald-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
                         >
                           GitHub
                         </a>
                         <a
-                          href={project.githubUrl}
+                          href={project.liveUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center rounded-full bg-emerald-700 px-4 py-2 text-sm font-medium text-white transition-transform duration-300 group-hover:-translate-y-0.5 hover:bg-emerald-600"
+                          className="inline-flex items-center rounded-full bg-emerald-700 px-4 py-2 text-sm font-medium text-white transition-all duration-300 group-hover:-translate-y-0.5 hover:bg-emerald-600 hover:shadow-[0_18px_30px_rgba(4,120,87,0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
                         >
-                          Open Repo
+                          Open Project
                         </a>
                       </div>
                     </div>

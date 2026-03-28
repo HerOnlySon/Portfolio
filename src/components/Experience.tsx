@@ -1,55 +1,5 @@
 import Reveal from './Reveal'
-
-const roles = [
-  {
-    title: 'Software Engineer',
-    company: 'Shaper',
-    type: 'Internship',
-    period: 'Oct 2025 - Present',
-    duration: '6 mos',
-    location: 'South Africa',
-    mode: 'Hybrid',
-    description:
-      'Building full-stack applications with Java, Angular, Spring Boot, and PostgreSQL. Working on RESTful API integration, scalable backend features, and collaborative product delivery using Git-based workflows.',
-    highlights: [
-      'Java',
-      'Angular',
-      'Spring Boot',
-      'PostgreSQL',
-      'REST APIs',
-      'Git',
-    ],
-  },
-  {
-    title: 'Junior Consultant',
-    company: 'Onyx Consulting Group',
-    type: 'Contract',
-    period: 'Jul 2023 - Oct 2025',
-    duration: '2 yrs 4 mos',
-    location: 'Midrand, Gauteng, South Africa',
-    mode: 'Hybrid',
-    description:
-      'Worked as a bridge between clients and delivery teams, supporting data gathering, cleaning, statistical analysis, and visualization to help businesses make better data-driven decisions.',
-    highlights: [
-      'Data Analysis',
-      'Visualization',
-      'Consulting',
-      'Attention to Detail',
-    ],
-  },
-  {
-    title: 'Data Analyst',
-    company: 'First National Bank GH',
-    type: 'Internship',
-    period: 'Apr 2021 - May 2022',
-    duration: '1 yr 2 mos',
-    location: 'City of Johannesburg, Gauteng, South Africa',
-    mode: 'Hybrid',
-    description:
-      'Supported the analytics team with financial data collection, cleaning, reporting, and statistical analysis using tools such as Excel and SAS while building a strong analytical foundation.',
-    highlights: ['Excel', 'SAS', 'Reporting', 'Data Modeling'],
-  },
-]
+import { roles } from '../data/portfolio'
 
 function Experience() {
   return (
